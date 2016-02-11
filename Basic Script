@@ -1,0 +1,71 @@
+import random
+
+
+counter = {'r':0,'p':0,'s': 0}
+vict = {'c':0,'p':0,'t':0}
+game_over = False
+
+
+while game_over == False:
+    player_choice = input("Choose (r)ock, (p)aper, (s)cissors, or (q)uit: ")
+    if player_choice == 'r' or player_choice == 'R':
+        counter['r'] = counter['r'] + 1
+    elif player_choice == 'p' or player_choice == 'P':
+        counter['p'] = counter['p'] + 1
+    elif player_choice == 's' or player_choice == 'S':
+        counter['s'] = counter['s'] + 1
+    else:
+        print("Computer wins:", vict['c'])
+        print("Player wins:", vict['p'])
+        print("Ties:", vict['t'])
+        print("Rock selected:", counter['r'])
+        print("Paper selected:", counter['p'])
+        print("Scissor selected:", counter['s'])
+        quiting = True
+        break
+
+
+    prediction = max(counter, key=counter.get)
+    if counter['r'] == counter['s'] or counter['s'] == counter['p'] or counter['r'] == counter['p']:
+        prediction = random.randrange(0, 3)
+        if prediction == 0:
+            prediction = 's'
+        elif prediction == 1:
+            prediction = 'p'
+        elif prediction == 2:
+            prediction = 'r'
+        else:
+            pass
+
+
+    if prediction == 'r' or prediction == 'R':
+        if player_choice == 'p' or player_choice == 'P':
+            print("You both choose paper. Tie game!")
+            vict['t'] = vict['t'] + 1
+        elif player_choice == 'r' or player_choice == 'R':
+            print("The computer chooses paper. You lose!")
+            vict['c'] = vict['c'] + 1
+        else:
+            print("The computer chooses paper. You win!")
+            vict['p'] = vict['p'] + 1
+    if prediction == 'p' or prediction == 'P':
+        if player_choice == 's' or player_choice == 'S':
+            print("You both choose scissors. Tie game!")
+            vict['t'] = vict['t'] + 1
+        elif player_choice == 'p' or player_choice == 'P':
+            print("The computer chooses scissors. You lose!")
+            vict['c'] = vict['c'] + 1
+        else:
+            print("The computer chooses scissors. You win!")
+            vict['p'] = vict['p'] + 1
+    if prediction == 's' or prediction == 'S':
+        if player_choice == 'r' or player_choice == 'R':
+            print("You both choose rock. Tie game!")
+            vict['t'] = vict['t'] + 1
+        elif player_choice == 's' or player_choice == 'S':
+            print("The computer chooses rock. You lose!")
+            vict['c'] = vict['c'] + 1
+        else:
+            print("The computer chooses rock. You win!")
+            vict['p'] = vict['p'] + 1
+    
